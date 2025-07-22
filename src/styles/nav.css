@@ -5,93 +5,8 @@
 }
 
 body {
-  background-color: white;
   font-family: Arial, sans-serif;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 0 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background: rgb(153, 188, 225);
-  z-index: 1000;
-  overflow: visible; /* Prevent horizontal overflow */
-}
-
-.left {
-  position: relative;
-  z-index: 1001;
-}
-
-a.nav-link:hover {
-  background-color: rgba(91, 133, 238,0);
-}
-
-.left {
-  display: flex;
-  align-items: center;
-}
-
-.left img {
-  max-height: 50px; /* Set a maximum height */
-  width: auto; /* Maintain aspect ratio */
-  margin-left: 0; /* Remove left margin */
-}
-
-.right {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex: 1; /* Allow right section to take available space */
-}
-
-.right ul {
-  display: flex;
-  gap: 20px;
-  list-style: none;
-}
-
-.lang {
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-}
-
-.right li a {
-  text-decoration: none;
-  color: white;
-  font-size: 1rem;
-  padding: 8px 12px;
-  transition: all 0.3s ease;
-}
-
-.right li a:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-}
-
-.right li button {
-  padding: 8px 16px;
-  border: none;
-  background-color: #6200ea;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.right li button:hover {
-  background-color: #4500b5;
+  overflow-x: hidden;
 }
 
 .checkbox-wrapper-5 .check {
@@ -189,18 +104,40 @@ a.nav-link:hover {
   line-height: 0;
 }
 
+.dropdown {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.group:hover .dropdown,
+.dropdown.show {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.right .dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 2000;
+  min-width: 200px;
+}
+
 .sidebar {
   position: fixed;
-  /* top: 0; */
   right: 0;
-  width: 100%; /* Make sidebar full width on mobile screens */
+  width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 50, 0.9); /* Dark navy blue with slight transparency */
+  background-color: rgba(0, 0, 50, 0.9);
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   transform: translateX(100%);
   transition: transform 0.3s;
   z-index: 1001;
-  /* padding-top: 60px; To ensure it does not overlap with the nav bar */
   color: white;
 }
 
@@ -214,8 +151,8 @@ a.nav-link:hover {
   border: none;
   cursor: pointer;
   padding: 1rem;
-  text-align: center; /* Centering the close button */
-  width: 100%; /* Making the button take full width */
+  text-align: center;
+  width: 100%;
 }
 
 .sidebar ul {
@@ -239,86 +176,7 @@ a.nav-link:hover {
 }
 
 .sidebar ul li a:hover {
-  background-color: rgba(255, 255, 255, 0.2);  /* Light background on hover */
-  padding-left: 1.5rem;  /* Adds a little padding shift for effect */
-  color: rgb(128, 183, 255);  /*text color */
-}
-
-/* Ensure the dropdown has a higher z-index */
-.dropdown.show {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  transform: translateY(0);
-  z-index: 2000; /* Increase z-index */
-}
-
-/* Ensure the dropdown is properly positioned */
-.right .dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  display: none;
-  background-color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  z-index: 2000; /* Increase z-index */
-}
-
-.dropdown {
-  display: none;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-}
-
-.group:hover .dropdown {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.group .dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  display: none;
-  background-color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  z-index: 2000;
-  min-width: 200px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* New styling for the Guide and Rules button */
-.guide-link {
-  background-color: rgba(12, 17, 81, 0.503); /* Different background color */
-  color: rgb(255, 255, 255); /* Different text color */
-  font-weight: bold; /* Bold text */
-  border-radius: 8px; /* Rounded corners */
-  padding: 8px 16px; /* Padding to make it stand out */
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.guide-link:hover {
-  background-color: rgba(2, 6, 90, 0.175); /* Change background color on hover */
-  color: rgb(128, 183, 255); /* Change text color on hover */
-}
-
-/* Add hover effect to the navigation links */
-.nav-link {
-  text-decoration: none; /* Remove underline */
-  color: inherit; /* Use inherited color from parent */
-  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and transform */
-}
-
-.nav-link:hover {
-  color: #196bae; /* Change color on hover */
-  transform: scale(1.15); /* Slightly enlarge the text */
+  background-color: rgba(255, 255, 255, 0.2);
+  padding-left: 1.5rem;
+  color: rgb(128, 183, 255);
 }
